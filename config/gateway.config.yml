@@ -1,0 +1,47 @@
+http:
+  port: 8080
+admin:
+  port: 9876
+  host: localhost
+apiEndpoints:
+  micro1:
+    host: localhost
+    paths: ["/first-micros", "/first-micros/*"]
+  micro2:
+    host: localhost
+    paths: ["/second-micros", "/second-micros/*"]
+serviceEndpoints:
+  micro-1:
+    url: "http://localhost:3001"
+  micro-2:
+    url: "http://localhost:3002"
+policies:
+  - basic-auth
+  - cors
+  - expression
+  - key-auth
+  - log
+  - oauth2
+  - proxy
+  - rate-limit
+pipelines:
+  micro1Pipeline:
+    apiEndpoints:
+      - micro1
+    policies:
+      # Uncomment `key-auth:` when instructed to in the Getting Started guide.
+      # - key-auth:
+      - proxy:
+          - action:
+              serviceEndpoint: micro-1
+              changeOrigin: true
+  micro2Pipeline:
+    apiEndpoints:
+      - micro2
+    policies:
+      # Uncomment `key-auth:` when instructed to in the Getting Started guide.
+      # - key-auth:
+      - proxy:
+          - action:
+              serviceEndpoint: micro-2
+              changeOrigin: true
