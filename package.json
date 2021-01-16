@@ -6,6 +6,7 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
+    "startAll": "babel-node server.js",
     "watch": "nodemon --exec babel-node server.js"
   },
   "dependencies": {
