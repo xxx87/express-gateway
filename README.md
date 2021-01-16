@@ -8,8 +8,8 @@ To demonstrate how the application works, install two simple microservices:
 [Microservice 1](https://github.com/xxx87/docker-micro-1) and [Microservice 2](https://github.com/xxx87/docker-micro-2)
 
 Microservices can be run Locally or in Docker using Dockerfile or Docker-Compose.
-
-### To Run App
+#
+### After installing and running microservices, launch Gateway:
 - Install dependencies
 ```
 npm i
@@ -18,7 +18,13 @@ npm i
 ```
 npm start
 ```
-#### "express-gateway" already has built-in support for restarting when code changes !
+By default, Gateway will run on port `8080` at `localhost:8080`
+### Now you do not need to access each service at different IP addresses, just go to `"localhost:8080"` and the corresponding name api 1 or api 2 or api [n]...
+```
+example: http://localhost:8080/second-micros/healthcheck
+```
+
+#### __"express-gateway" already has built-in support for restarting when code changes !__
 
 ### If you run your applications (microservices) locally:
 - If you want all your microservices to start together with the gateway (so as not to start each microservice manually),
